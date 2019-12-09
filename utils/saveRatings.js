@@ -1,6 +1,7 @@
 const uuid = require('uuid');
 const AWS = require('aws-sdk');
 const db = new AWS.DynamoDB.DocumentClient;
+
 module.exports = (obj, businessName) => {
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
@@ -18,7 +19,6 @@ module.exports = (obj, businessName) => {
       console.error(`Error in adding data ${JSON.stringify(err)}`);
       return Promise.reject();
     }
-    
     return Promise.resolve(params.Item);
   });
 };
