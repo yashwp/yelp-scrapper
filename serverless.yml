@@ -12,6 +12,8 @@
 # Happy Coding!
 
 service: yelp-scraper
+plugins:
+  - serverless-offline-scheduler
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -28,6 +30,10 @@ provider:
   environment:
     DYNAMODB_TABLE: yelp-rating
   iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "lambda:InvokeFunction"
+      Resource: "*"
     - Effect: "Allow"
       Action:
         - "dynamodb:Query"
@@ -49,6 +55,10 @@ package:
 functions:
   scrape:
     handler: handler.scrape
+  launch_scapers:
+    handler: handler.launch_scapers
+    events:
+      - schedule: rate(1 minute)
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
