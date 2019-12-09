@@ -1,6 +1,12 @@
 'use strict';
+const {getPage, parsePage, saveRatings} = require('./utils/index');
 
-module.exports.hello = async event => {
+module.exports.scrape = async event => {
+  
+  const data = await getPage(event);
+  const obj = await parsePage(data);
+  saveRatings(obj);
+  
   return {
     statusCode: 200,
     body: JSON.stringify(
