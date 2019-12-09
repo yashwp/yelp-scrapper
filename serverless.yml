@@ -36,7 +36,7 @@ provider:
         - "dynamodb:PutItem"
         - "dynamodb:UpdateItem"
         - "dynamodb:DeleteItem"
-      Resource: "arn:aws:dynamodb:{opt:region, self:provider.region}:634148783116:table/${self:provider.environment.DYNAMODB_TABLE}"
+      Resource: "arn:aws:dynamodb:ap-south-1:634148783116:table/yelp-rating"
 
 # you can add packaging information here
 package:
