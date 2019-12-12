@@ -14,13 +14,6 @@
 service: yelp-scraper
 plugins:
   - serverless-offline-scheduler
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
-
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-# frameworkVersion: "=X.X.X"
 
 provider:
   name: aws
@@ -48,9 +41,6 @@ provider:
 package:
   include:
     - utils/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
 
 functions:
   scrape:
@@ -59,6 +49,9 @@ functions:
     handler: handler.launch_scapers
     events:
       - schedule: rate(1 minute)
+      
+      
+      
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
